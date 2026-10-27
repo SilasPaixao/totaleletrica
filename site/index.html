@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sampaio Total Elétrica — Rebobinamento e manutenção de motores elétricos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap">
+<style>
+:root{--bg:#f4f0e6;--fg:#0d2a1d;--muted:#4d6155;--line:#cfc8b4;--gold:#a37e2c;--green:#0b3b27;--cream:#f4f0e6;--serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;--sans:"Jost","Helvetica Neue",Arial,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#07170f;--fg:#efe9d8;--muted:#9fb0a4;--line:#1f3a2c;--gold:#c9a24b}}
+:root[data-theme="dark"]{--bg:#07170f;--fg:#efe9d8;--muted:#9fb0a4;--line:#1f3a2c;--gold:#c9a24b}
+html{height:auto;scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.05;margin:0}
+/* NAV */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:#07170f}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:20px 32px;color:#efe9d8;transition:background .5s,padding .5s}
+nav.solid{background:#07170f;padding:14px 32px}
+.logo{font-family:var(--serif);font-size:22px;letter-spacing:.12em;text-decoration:none;white-space:nowrap}
+.logo b{color:#c9a24b;font-weight:400}
+nav ul{display:flex;gap:34px;list-style:none;margin:0;padding:0;font-size:14px;letter-spacing:.06em}
+nav ul a{text-decoration:none;position:relative;padding:4px 0}
+nav ul a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:#c9a24b;transform:scaleX(0);transform-origin:left;transition:transform .5s}
+nav ul a:hover::after{transform:scaleX(1)}
+@media(max-width:760px){nav ul li:not(:last-child){display:none}nav{padding:16px 20px}.logo{font-size:15px;letter-spacing:.08em}}
+/* HERO */
+.hero{position:relative;min-height:100vh;min-height:100svh;background:radial-gradient(ellipse at 50% 45%,#0f4a31 0%,#07170f 70%);color:#efe9d8;display:grid;place-items:center;text-align:center;overflow:hidden}
+.hero svg{position:absolute;width:min(92vmin,820px);left:50%;top:50%;transform:translate(-50%,-50%);opacity:.9}
+#stator{transform-origin:center;transition:transform .15s linear}
+.coil{fill:none;stroke:url(#cu);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:draw 2.6s cubic-bezier(.6,0,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero-copy{position:relative;z-index:2;padding:0 24px;max-width:900px}
+.hero h1{font-size:clamp(46px,8.4vw,112px);letter-spacing:-.01em;text-shadow:0 2px 40px #07170f}
+.hero h1 span{display:inline-block;opacity:0;transform:translateY(40px);animation:rise 1.4s cubic-bezier(.2,.7,.2,1) forwards}
+.hero p{margin:26px auto 40px;max-width:520px;font-size:17px;color:#d6d0bd;opacity:0;animation:rise 1.4s 1.6s forwards}
+.hero .btn{opacity:0;animation:rise 1.4s 1.9s forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.scroll{position:absolute;bottom:calc(28px + env(safe-area-inset-bottom,0px));left:50%;width:1px;height:56px;background:linear-gradient(#c9a24b,transparent);animation:pulse 2.4s infinite}
+@keyframes pulse{50%{transform:translateX(-50%) scaleY(.4);opacity:.4}0%,100%{transform:translateX(-50%)}}
+.btn{display:inline-block;padding:16px 40px;border:1px solid #c9a24b;color:#efe9d8;text-decoration:none;font-size:14px;letter-spacing:.08em;position:relative;overflow:hidden;z-index:0;transition:color .5s}
+.btn::before{content:"";position:absolute;inset:0;background:#c9a24b;transform:translateY(101%);transition:transform .5s cubic-bezier(.6,0,.2,1);z-index:-1}
+.btn:hover{color:#07170f}.btn:hover::before{transform:none}
+/* SECTIONS */
+section{padding:clamp(80px,13vw,170px) 0}
+.statement{text-align:center}
+.statement h2{font-size:clamp(34px,5.6vw,76px);max-width:15em;margin:0 auto}
+.statement p{max-width:620px;margin:36px auto 0;color:var(--muted);font-size:18px}
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1.2s cubic-bezier(.2,.7,.2,1),transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.diag{background:var(--green);color:#efe9d8}
+.diag .head{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:70px}
+.diag h2{font-size:clamp(36px,5vw,66px)}
+.diag .head p{color:#b9c6bc;font-size:17px;margin:0;align-self:end}
+@media(max-width:760px){.diag .head{grid-template-columns:1fr;gap:20px}}
+.acc{border-top:1px solid #2b5a43}
+.acc button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 0;border-bottom:1px solid #2b5a43;font-family:var(--serif);font-size:clamp(22px,2.9vw,38px);transition:color .4s,padding-left .5s}
+.acc button:hover,.acc button[aria-expanded="true"]{color:#c9a24b;padding-left:14px}
+.acc button:focus-visible{outline:2px solid #c9a24b}
+.acc i{flex:none;width:18px;height:18px;position:relative}
+.acc i::before,.acc i::after{content:"";position:absolute;background:currentColor;left:0;top:50%;width:100%;height:1px;transition:transform .5s}
+.acc i::after{transform:rotate(90deg)}
+button[aria-expanded="true"] i::after{transform:rotate(0)}
+.panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.6,0,.2,1)}
+.panel.open{grid-template-rows:1fr}
+.panel>div{overflow:hidden}
+.panel ul{margin:0;padding:6px 0 34px 14px;list-style:none;max-width:760px;color:#cfd8d1;font-size:17px;border-bottom:1px solid #2b5a43}
+.panel li{padding:6px 0 6px 26px;position:relative}
+.panel li::before{content:"";position:absolute;left:0;top:19px;width:12px;height:1px;background:#c9a24b}
+/* PROCESS */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:80px;border-top:1px solid var(--line)}
+.step{padding:34px 22px 0 0;position:relative}
+.step::before{content:"";position:absolute;top:-4px;left:0;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.step h3{font-size:28px;margin-bottom:12px}
+.step p{margin:0;color:var(--muted);font-size:15.5px}
+@media(max-width:900px){.steps{grid-template-columns:1fr;border-top:0;border-left:1px solid var(--line);margin-left:4px}.step{padding:0 0 38px 28px}.step::before{top:8px;left:-4px}}
+.proc-title{font-size:clamp(34px,5vw,64px);max-width:12em}
+/* TIPOS */
+.types{border-top:1px solid var(--line);padding:0}
+.types .wrap{display:grid;grid-template-columns:repeat(3,1fr)}
+.types article{padding:60px 34px 60px 0;border-right:1px solid var(--line)}
+.types article+article{padding-left:34px}
+.types article:last-child{border-right:0}
+.types h3{font-size:34px;margin-bottom:14px}
+.types p{margin:0;color:var(--muted)}
+@media(max-width:860px){.types .wrap{grid-template-columns:1fr}.types article,.types article+article{padding:40px 0;border-right:0;border-bottom:1px solid var(--line)}}
+/* CONTATO */
+.cta{background:radial-gradient(ellipse at 50% 100%,#0f4a31,#07170f 70%);color:#efe9d8;text-align:center}
+.cta h2{font-size:clamp(38px,6.2vw,88px);max-width:12em;margin:0 auto 34px}
+.cta p{color:#b9c6bc;max-width:520px;margin:0 auto 44px;font-size:18px}
+footer{background:#07170f;color:#8fa296;padding:40px 0 calc(40px + env(safe-area-inset-bottom,0px));font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}.hero h1 span,.hero p,.hero .btn,.rv{opacity:1;transform:none}.coil{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a class="logo" href="#topo">SAMPAIO <b>TOTAL</b> ELÉTRICA</a>
+  <ul>
+    <li><a href="#diagnostico">Diagnóstico</a></li>
+    <li><a href="#processo">Processo</a></li>
+    <li><a href="#motores">Motores</a></li>
+    <li><a href="#contato">Orçamento</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="topo">
+  <svg viewBox="-200 -200 400 400" aria-hidden="true">
+    <defs>
+      <linearGradient id="cu" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0b36a"/><stop offset=".5" stop-color="#b8672b"/><stop offset="1" stop-color="#e3a05a"/></linearGradient>
+    </defs>
+    <g id="stator"></g>
+  </svg>
+  <div class="hero-copy">
+    <h1><span style="animation-delay:.9s">A causa</span> <span style="animation-delay:1.1s">da queima</span> <span style="animation-delay:1.3s">começa</span> <span style="animation-delay:1.5s">no enrolamento.</span></h1>
+    <p>Rebobinamento e manutenção de motores elétricos monofásicos, com análise técnica que elimina a causa antes de religar a máquina.</p>
+    <a class="btn" href="#contato">Solicitar orçamento</a>
+  </div>
+  <div class="scroll"></div>
+</header>
+
+<section class="statement">
+  <div class="wrap">
+    <h2 class="rv">Um motor que queima uma vez, queima de novo se a causa continuar lá.</h2>
+    <p class="rv">A especificação correta de tensão, frequência, polaridade e grau de proteção garante uma vida útil longa. Instalação, manutenção e operação corretas completam o trabalho. Quando ocorre a queima, identificamos a causa pela análise do enrolamento danificado e a corrigimos.</p>
+  </div>
+</section>
+
+<section class="diag" id="diagnostico">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="rv">Cada queima conta uma história.</h2>
+      <p class="rv">Abra cada tipo de dano para ver as causas mais prováveis que investigamos em motores monofásicos.</p>
+    </div>
+    <div class="acc" id="acc"></div>
+  </div>
+</section>
+
+<section id="processo">
+  <div class="wrap">
+    <h2 class="proc-title rv">Do motor queimado ao motor confiável.</h2>
+    <div class="steps">
+      <div class="step rv"><h3>Análise</h3><p>Inspeção do enrolamento danificado e registro das características da queima.</p></div>
+      <div class="step rv"><h3>Causa</h3><p>Cruzamos o padrão do dano com as causas possíveis e confirmamos a origem.</p></div>
+      <div class="step rv"><h3>Rebobinamento</h3><p>Novo enrolamento com fio esmaltado e isolação adequados à especificação do motor.</p></div>
+      <div class="step rv"><h3>Impregnação</h3><p>Verniz aplicado para proteger as bobinas contra umidade, contaminação e vibração.</p></div>
+      <div class="step rv"><h3>Testes</h3><p>Verificação elétrica e mecânica antes da entrega, com orientação para evitar nova queima.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="types" id="motores">
+  <div class="wrap">
+    <article class="rv"><h3>Motores monofásicos</h3><p>Principal, auxiliar, capacitor de partida, capacitor permanente e split-phase.</p></article>
+    <article class="rv"><h3>Motores trifásicos</h3><p>Desbalanceamento de tensão, falta de fase e erros de ligação em triângulo ou estrela.</p></article>
+    <article class="rv"><h3>Manutenção completa</h3><p>Rotor, mancais, ventilação, conexões e vista explodida para remontagem precisa.</p></article>
+  </div>
+</section>
+
+<section class="cta" id="contato">
+  <div class="wrap">
+    <h2 class="rv">Seu motor merece um diagnóstico de verdade.</h2>
+    <p class="rv">Conte o que aconteceu e receba um orçamento com a causa provável da queima.</p>
+    <a class="btn rv" href="https://wa.me/5500000000000" target="_blank" rel="noopener">Falar pelo WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span>Sampaio Total Elétrica — Serviços elétricos e rebobinamento</span><span>Informações técnicas baseadas em referências WEG.</span></div>
+</footer>
+
+<script>
+(function(){
+  // Estator animado
+  var g=document.getElementById('stator'),NS='http://www.w3.org/2000/svg',N=36,out='';
+  out+='<circle r="190" fill="none" stroke="#c9a24b" stroke-opacity=".25" stroke-width=".6"/><circle r="92" fill="#07170f" stroke="#c9a24b" stroke-opacity=".5" stroke-width=".8"/>';
+  for(var i=0;i<N;i++){var a=i/N*Math.PI*2,c=Math.cos(a),s=Math.sin(a);
+    out+='<line x1="'+(c*108).toFixed(1)+'" y1="'+(s*108).toFixed(1)+'" x2="'+(c*172).toFixed(1)+'" y2="'+(s*172).toFixed(1)+'" stroke="#d9d2bd" stroke-opacity=".55" stroke-width="5.5"/>';}
+  g.innerHTML=out;
+  for(var k=0;k<N;k++){
+    var a1=(k+.5)/N*Math.PI*2,a2=(k+4.5)/N*Math.PI*2,r1=112,r2=168,
+        x1=Math.cos(a1)*r1,y1=Math.sin(a1)*r1,x2=Math.cos(a2)*r1,y2=Math.sin(a2)*r1,
+        x3=Math.cos(a1)*r2,y3=Math.sin(a1)*r2,x4=Math.cos(a2)*r2,y4=Math.sin(a2)*r2,
+        am=(a1+a2)/2,cx=Math.cos(am)*70,cy=Math.sin(am)*70,cx2=Math.cos(am)*205,cy2=Math.sin(am)*205;
+    var p=document.createElementNS(NS,'path');
+    p.setAttribute('d','M'+x1+' '+y1+' L'+x3+' '+y3+' Q'+cx2+' '+cy2+' '+x4+' '+y4+' L'+x2+' '+y2+' Q'+cx+' '+cy+' '+x1+' '+y1);
+    p.setAttribute('class','coil');
+    p.style.setProperty('--l','900');
+    p.style.animationDelay=(k*0.07)+'s';
+    g.appendChild(p);
+  }
+  // Scroll: rotação do estator e nav
+  var nav=document.getElementById('nav'),ticking=false;
+  function onScroll(){var y=window.scrollY;nav.classList.toggle('solid',y>40);
+    g.style.transform='rotate('+(y*0.06)+'deg) scale('+(1+Math.min(y,900)/2400)+')';ticking=false;}
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+  onScroll();
+  // Revelação ao rolar
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.2});
+  document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=((i%5)*90)+'ms';io.observe(el);});
+  // Acordeão de danos
+  var data=[
+   ['Curto entre espiras no enrolamento principal',['Contaminação interna do motor','Falha do esmalte de isolação do fio','Falha do verniz de impregnação','Oscilações rápidas na tensão de alimentação']],
+   ['Curto entre espiras no enrolamento auxiliar',['Contaminação interna do motor','Falha do esmalte de isolação do fio','Falha do verniz de impregnação']],
+   ['Metade do enrolamento principal sobreaquecido',['Falha da chave comutadora de tensão ao alimentar na menor tensão','Picos de sobrecarga que impedem o fechamento do centrífugo e do platinado com o motor na maior tensão']],
+   ['Curto entre enrolamentos principal e auxiliar',['Contaminação interna do motor','Falha do esmalte ou do material isolante entre os enrolamentos','Falha do verniz de impregnação','Degradação do isolante por temperatura excessiva (motores com capacitor permanente)']],
+   ['Curto na conexão',['Contaminação interna do motor','Falha do material isolante','Superaquecimento da conexão por mau contato']],
+   ['Curto na saída ou dentro da ranhura',['Degradação do material isolante por ressecamento e excesso de temperatura','Falha do esmalte de isolação do fio','Falha do verniz de impregnação','Rápidas oscilações na tensão de alimentação']],
+   ['Rotor travado',['Dificuldade excessiva na partida: queda de tensão, inércia ou torque de carga muito elevados','Travamento do eixo da carga']],
+   ['Sobreaquecimento no enrolamento principal',['Cabos de alimentação muito longos ou muito finos','Conexão incorreta dos cabos de ligação','Excesso de carga na ponta do eixo','Sobretensão ou subtensão na rede','Ventilação deficiente ou obstruída']],
+   ['Sobreaquecimento no enrolamento auxiliar',['Circuito auxiliar aberto: problema no capacitor, platinado ou centrífugo','Dificuldade na partida e excesso de partidas em tempo curto','Penetração de objetos estranhos no conjunto centrífugo ou platinado','Motor operando em vazio ou com carga muito baixa']]
+  ];
+  var acc=document.getElementById('acc');
+  data.forEach(function(d,i){
+    var b=document.createElement('button');b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls','p'+i);
+    b.innerHTML='<span>'+d[0]+'</span><i></i>';
+    var p=document.createElement('div');p.className='panel';p.id='p'+i;
+    p.innerHTML='<div><ul>'+d[1].map(function(c){return '<li>'+c+'</li>';}).join('')+'</ul></div>';
+    b.onclick=function(){var o=b.getAttribute('aria-expanded')==='true';
+      acc.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-expanded','false');});
+      acc.querySelectorAll('.panel').forEach(function(x){x.classList.remove('open');});
+      if(!o){b.setAttribute('aria-expanded','true');p.classList.add('open');}};
+    acc.appendChild(b);acc.appendChild(p);
+  });
+  acc.querySelector('button').click();
+})();
+</script>
+</body>
+</html>
